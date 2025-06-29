@@ -8,7 +8,7 @@ document.addEventListener('keydown', function (e) {
 });
 
 function jump() {
-  if (dino.classList != 'jump') {
+  if (!dino.classList.contains('jump')) {
     dino.classList.add('jump');
 
     setTimeout(function () {
@@ -17,14 +17,13 @@ function jump() {
   }
 }
 
-setInterval(function () {
-  let obstacleLeft = parseInt(window.getComputedStyle(obstacle).getPropertyValue("left"));
-  let dinoTop = parseInt(window.getComputedStyle(dino).getPropertyValue("top"));
+obstacle.style.animation = "obstacleMove 2s infinite linear";
 
-  if (obstacleLeft < 80 && obstacleLeft > 0 && dinoTop >= 150) {
+setInterval(function () {
+  let obstacleLeft = obstacle.getBoundingClientRect().left;
+  let dinoBottom = parseInt(window.getComputedStyle(dino).bottom);
+
+  if (obstacleLeft < 80 && obstacleLeft > 0 && dinoBottom < 50) {
     alert("Game Over!");
   }
 }, 10);
-
-// animate obstacle
-obstacle.style.animation = "obstacleMove 2s infinite linear";

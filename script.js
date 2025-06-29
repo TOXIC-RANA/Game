@@ -1,5 +1,10 @@
 const dino = document.getElementById('dino');
 const obstacle = document.getElementById('obstacle');
+const jumpBtn = document.getElementById('jumpBtn');
+
+jumpBtn.addEventListener('click', () => {
+  jump();
+});
 
 document.addEventListener('keydown', function (e) {
   if (e.code === 'Space') {
@@ -23,7 +28,8 @@ setInterval(function () {
   let obstacleLeft = obstacle.getBoundingClientRect().left;
   let dinoBottom = parseInt(window.getComputedStyle(dino).bottom);
 
-  if (obstacleLeft < 80 && obstacleLeft > 0 && dinoBottom < 50) {
+  if (obstacleLeft < 100 && obstacleLeft > 0 && dinoBottom < 50) {
     alert("Game Over!");
+    window.location.reload();
   }
 }, 10);
